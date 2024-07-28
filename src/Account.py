@@ -11,7 +11,8 @@ class Account():
         self._order_history = []
     
 
-
+    def get_id(self):
+        return self._id
 
     def get_email(self):
         return self._email
@@ -28,6 +29,48 @@ class Account():
     def get_password(self):
         return self._password
     
-    def add_to_cart(self, product):
-        self._cart.append(product)
+    def add_to_cart(self, product, qty):
+        for x in range(qty):
+            self._cart.append(product)  
     
+
+    def reduce_qty_cart(self, id, qty):
+        selected = [x for x in self._cart if x.id == id]
+        if qty > len(selected):
+            qty = len(selected)
+        for x in selected:
+            self._cart.remove(x)
+            qty -= 1
+            if qty < 1:
+                break
+        print(self._cart)
+
+    def increase_qty_cart(self, id, qty):
+        selected = [x for x in self._cart if x.id == id]
+        for x in range(qty):
+            self._cart.append(selected[0])
+
+    def empty_cart(self):
+        self._cart = []
+
+    def set_id(self, id):
+        self._id = id
+    
+    def get_cart(self):
+        return self._cart
+    
+    def set_cart(self, cart):
+        self._cart = cart
+
+    def get_price_line(self):
+        res = []
+        [res.append(x) for x in self._cart if x not in res]
+        print("--------------------------------")
+        total_price = sum([x.price for x in self._cart])
+        for x in res:
+            print(f"id: {x.id} | {x.title} | qty: {self._cart.count(x)} | price: ${x.price * self._cart.count(x)}")
+        print(f"your total price is ${total_price}")
+        print("--------------------------------")
+    
+    def __repr__(self):  
+        return f"id: {self._id}, \nemail: {self._email} \nrole: {self._role} \nname: {self._name}" 

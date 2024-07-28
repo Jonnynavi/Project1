@@ -4,8 +4,18 @@ class Order():
         self.user_id = user_id
         self.order_date = order_date
         self.products = products
+        self.total_price = sum([x.id for x in products])
 
     def add_product(self, product):
         self.products.append(product)
     
+    def prod_qty(self):
+        id_qty = {x.id:self.products.count(x) for x in self.products}
+        return id_qty
     
+    def get_prices(self):
+        id_price = { x.id : x.price * self.products.count(x) for x in self.products}
+        return id_price
+    
+    def __repr__(self):  
+        return f"id: {self.id}, \n ------------------------------------- \ndate: {self.order_date} \nproducts: {self.products}"

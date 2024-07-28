@@ -7,4 +7,9 @@ class Product():
         self.price = price
 
     def __repr__(self):  
-        return f"id: {self.id}, \ntitle: {self.title} \nimage: {self.image} \ndescription: {self.description} \nprice: ${self.price}" 
+        return f"id: {self.id}, \ntitle: {self.title} \nimage: {self.image} \ndescription: {self.description} \nprice: ${self.price}"
+
+    def __eq__(self, product):
+        return self.title == product.title
+    def __hash__(self):
+      return hash((self.id, self.title, self.price))
