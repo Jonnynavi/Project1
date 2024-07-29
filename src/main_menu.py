@@ -70,3 +70,5 @@ def check_out(user: Account):
 
 def get_user_prev_orders(account: Account):
     get_previous_user_orders(account)
+    account.get_order_history()
+

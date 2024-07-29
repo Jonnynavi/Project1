@@ -4,11 +4,10 @@ def main():
     while True:
         print("\nWelcome to Navizon!")
         print("#############################")
-        current_Account = section_1()
-
+        current_Account = login_screen()
         while True:
             print("Please choose from these options")
-            option = int(input("1. shop\n2. check cart\n3. edit cart\n4. checkout\n5. check your past orders\n0. quit\n"))
+            option = int(input("1. shop\n2. check cart\n3. edit cart\n4. checkout\n5. check your past orders\n6. logout\n0. quit\n"))
             print("#############################")
 
             match option:
@@ -22,11 +21,12 @@ def main():
                     check_out(current_Account)
                 case 5:
                     get_previous_user_orders(current_Account)
-                
+                case 6:
+                    break 
                 case _:
                     return
 
-def section_1():
+def login_screen():
     current_account = None
     while True:
         option_1 = input(f"Please Login or create a new account\n1.Login\n2.Create an account\n")

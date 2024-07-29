@@ -13,3 +13,4 @@ class Product():
         return self.title == product.title
     def __hash__(self):
       return hash((self.id, self.title, self.price))
+    

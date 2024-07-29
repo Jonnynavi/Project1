@@ -4,7 +4,7 @@ class Order():
         self.user_id = user_id
         self.order_date = order_date
         self.products = products
-        self.total_price = sum([x.id for x in products])
+        self.total_price = sum([x.price for x in products])
 
     def add_product(self, product):
         self.products.append(product)
@@ -18,4 +18,7 @@ class Order():
         return id_price
     
     def __repr__(self):  
-        return f"id: {self.id}, \n ------------------------------------- \ndate: {self.order_date} \nproducts: {self.products}"
+        return f"\n-------------------------------------\nid: {self.id}, \ndate: {self.order_date} \nproducts: {self.products}"
+    
+    def get_total_price(self):
+        return sum([ x.price for x in self.products])

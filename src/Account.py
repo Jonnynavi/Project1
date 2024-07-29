@@ -74,3 +74,22 @@ class Account():
     
     def __repr__(self):  
         return f"id: {self._id}, \nemail: {self._email} \nrole: {self._role} \nname: {self._name}" 
+    
+    def get_order_history(self):
+        for i in self._order_history:
+            print("____________________________________________________")
+            print("###########################")
+            print(f"Order #{i.id}")
+            print("###########################")
+            res = []
+            [res.append(x) for x in i.products if x not in res]
+            print("--------------------------------")
+            total_price = i.get_total_price()
+            for x in res:
+                print(f"id: {x.id} | {x.title} | qty: {i.products.count(x)} | price: ${x.price * i.products.count(x)}")
+            print(f"your total price is ${total_price}")
+            print("--------------------------------")
+        return self._order_history
+        
+    def set_order_history(self, history):
+        self._order_history = history

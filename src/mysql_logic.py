@@ -49,7 +49,10 @@ def check_credentials(username, password):
     sql_account = f"SELECT * FROM user JOIN credentials c ON user.id = c.userID WHERE username = '{username}' AND password = '{str(password)}'"
     cursor.execute(sql_account)
     results = cursor.fetchone()
-    account = Account(username, password,results[1],results[2],results[3], results[0])
+    try:
+        account = Account(username, password,results[1],results[2],results[3], results[0])
+    except TypeError:
+        account = None
     return account
 
 
@@ -72,7 +75,7 @@ def insert_into_order_lines(order:Order):
 
 def get_previous_user_orders(account: Account):
     sql = """SELECT o.id, o.user_id, o.ordered_date, p.title, p.image, p.description,
-    ol.price, ol.quantity, p.id FROM orders o JOIN order_lines ol ON o.user_id = %s
+    p.price, ol.quantity, p.id FROM orders o JOIN order_lines ol ON o.id = ol.order_id
     JOIN products p ON ol.product_id = p.id
     WHERE ol.order_id = %s"""
 
@@ -82,12 +85,13 @@ def get_previous_user_orders(account: Account):
     order_history = []
     for o in orders_qry:
         products = []
-        cursor.execute(sql, (account.get_id(), o[0]) )
+        cursor.execute(sql, [o[0]] )
         for x in cursor:
             for e in range(x[7]):
                 products.append(Product(x[8],x[3],x[4],x[5],x[6]))
         order_history.append(Order(o[0], o[1], o[2], products))
-    print(order_history)
+    account.set_order_history(order_history)
+    account.get_order_history()
     
     
     # print(products)
@@ -97,14 +101,17 @@ def get_previous_user_orders(account: Account):
 # print(test_account.get_id())
 
 # products = [Product(1, "one", None, None, 20.99),Product(1, "one", None, None, 20.99),Product(1, "one", None, None, 20.99), Product(2, "two", None, None, 25.99),  Product(2, "two", None, None, 25.99),  Product(2, "two", None, None, 25.99),  Product(3, "three", None, None, 30.99), Product(3, "three", None, None, 30.99),Product(3, "three", None, None, 30.99),Product(3, "three", None, None, 30.99),Product(3, "three", None, None, 30.99)]
-account = Account(None, None, 'e', 'e', 'e', 5)
-get_previous_user_orders(account)
+# account = Account(None, None, 'e', 'e', 'e', 5)
+# get_previous_user_orders(account)
 # account.set_cart(products)
 # account.remove_from_cart(5, 5)
 # order = Order(0, 1, 10-14,products)
 # insert_into_orders(order)
 # print(order.prod_qty())
 # order.get_prices()
+
+# print(order.products)
+# print(order.get_total_price())
 
 
 
