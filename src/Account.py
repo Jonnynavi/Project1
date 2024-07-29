@@ -43,7 +43,6 @@ class Account():
             qty -= 1
             if qty < 1:
                 break
-        print(self._cart)
 
     def increase_qty_cart(self, id, qty):
         selected = [x for x in self._cart if x.id == id]
@@ -71,8 +70,8 @@ class Account():
         print("--------------------------------")
         total_price = sum([x.price for x in self._cart])
         for x in res:
-            print(f"id: {x.id} | {x.title} | qty: {self._cart.count(x)} | price: ${x.price * self._cart.count(x)}")
-        print(f"your total price is ${total_price}")
+            print(f"id: {x.id} | {x.title} | qty: {self._cart.count(x)} | price: {'${0}'.format(format(x.price * self._cart.count(x), ',.2f'))}")
+        print(f"your total price is {'${0}'.format(format(total_price, ',.2f'))}")
         print("--------------------------------")
     
     def __repr__(self):  
@@ -89,14 +88,14 @@ class Account():
             print("--------------------------------")
             total_price = i.get_total_price()
             for x in res:
-                print(f"id: {x.id} | {x.title} | qty: {i.products.count(x)} | price: ${x.price * i.products.count(x)}")
-            print(f"your total price is ${total_price}")
+                print(f"id: {x.id} | {x.title} | qty: {i.products.count(x)} | price: {'${0}'.format(format(x.price * i.products.count(x), ',.2f'))}")
+            print(f"your total price is {'${0}'.format(format(total_price, ',.2f'))}")
             print("--------------------------------")
         return self._order_history
     
     def find_order(self, id):
         for i in self._order_history:
-            if i.id == id:
+            if i.id == int(id):
                 return i
         return None
     def set_order_history(self, history):

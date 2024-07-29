@@ -16,3 +16,40 @@
 2024-07-29 03:03:08,067 :: adding new user - id: 10 name: To To
 2024-07-29 03:04:32,186 :: Inserting a new order - id: 9
 2024-07-29 03:10:17,324 :: modifying the user - id: 4 - username to ko
+2024-07-29 08:30:16,005 :: Deleted Order #1
+2024-07-29 08:30:24,914 :: Deleted Order #2
+2024-07-29 08:35:28,490 :: Inserting a new order - id: 10
+2024-07-29 08:35:45,434 :: Deleted Order #10
+2024-07-29 08:37:50,782 :: Inserting a new order - id: 11
+2024-07-29 08:38:04,224 :: Deleted Order #11
+2024-07-29 08:40:20,132 :: Inserting a new order - id: 12
+2024-07-29 08:40:34,672 :: Deleted Order #12
+2024-07-29 08:41:12,373 :: Inserting a new order - id: 13
+2024-07-29 08:41:27,277 :: Deleted Order #13
+2024-07-29 08:43:18,806 :: Inserting a new order - id: 14
+2024-07-29 08:43:24,842 :: Inserting a new order - id: 15
+2024-07-29 08:46:21,112 :: Deleted Order #14
+2024-07-29 09:18:14,638 :: Deleted Order #15
+2024-07-29 09:24:38,568 :: Deleted Order #15
+2024-07-29 09:28:19,462 :: Deleted Order #15
+2024-07-29 09:28:20,931 :: Deleted Order #15
+2024-07-29 09:28:49,577 :: Deleted Order #15
+2024-07-29 09:29:42,822 :: Deleted Order #15
+2024-07-29 09:34:45,241 :: Inserting a new order - id: 16
+2024-07-29 09:34:59,069 :: Deleted Order #16
+2024-07-29 09:38:43,376 :: Inserting a new order - id: 17
+2024-07-29 09:38:53,098 :: Inserting a new order - id: 18
+2024-07-29 09:39:03,857 :: Deleted Order #17
+2024-07-29 09:40:59,808 :: adding new user - id: 11 name: 5 5
+2024-07-29 09:42:03,088 :: adding new user - id: 12 name: W W
+2024-07-29 09:42:56,563 :: Inserting a new order - id: 19
+2024-07-29 09:43:03,961 :: Inserting a new order - id: 20
+2024-07-29 09:43:31,642 :: Deleted Order #20
+2024-07-29 09:57:47,633 :: Inserting a new order - id: 21
+2024-07-29 10:13:07,374 :: deleted user_id: 12 and all their orders
+2024-07-29 10:15:44,747 :: deleted user_id: 11 and all their orders
+2024-07-29 10:16:12,307 :: deleted user_id: 10 and all their orders
+2024-07-29 10:22:32,811 :: Inserting a new order - id: 22
+2024-07-29 10:23:06,924 :: modifying the user - id: 9 - username to navii
+2024-07-29 10:24:02,511 :: Deleted Order #21
+2024-07-29 10:25:05,364 :: adding new user - id: 13 name: Jona Torres

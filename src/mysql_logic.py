@@ -134,7 +134,7 @@ def del_user_and_credentials_by_id(id):
     logging.debug(f"deleted user_id: {id} and all their orders")
 
 def delete_past_order_by_id(id):
-    sql = "DELETE o, ol FROM orders o JOIN order_lines ol ON o.id = ol.order_id WHERE o.id = %s;"
+    sql = "DELETE o, ol FROM orders o LEFT JOIN order_lines ol ON o.id = ol.order_id WHERE o.id = %s;"
     cursor.execute(sql, [id])
     cnx.commit()
     logging.debug(f"Deleted Order #{id}")

@@ -6,9 +6,9 @@ def main():
         print("#############################")
         current_Account = login_screen()
         while True:
-            print("Please choose from these options")
             if current_Account.get_role() == "admin":
                 admin_menu(current_Account)
+                break
             else:
                 customer_menu(current_Account)
                 break
@@ -30,6 +30,9 @@ def login_screen():
     
 def customer_menu(current_account: Account):
     while True:
+        print("##################")
+        print("       Menu       ")
+        print("##################")
         option = int(input("1. shop\n2. check cart\n3. edit cart\n4. checkout\n5. check your past orders\n6. logout\n"))
         print("#############################")
 
@@ -48,26 +51,30 @@ def customer_menu(current_account: Account):
                 return 
 
 def admin_menu(current_account: Account):
-    option = int(input("1. shop\n2. check cart\n3. edit cart\n4. checkout\n5. check your past orders\n6. edit users\n7. view and del users orders\n8. logout\n"))
-    print("#############################")
+    while True:
+        print("##################")
+        print("    Admin Menu    ")
+        print("##################")
+        option = int(input("1. shop\n2. check cart\n3. edit cart\n4. checkout\n5. check your past orders\n6. edit users\n7. view and del users orders\n8. logout\n"))
+        print("#############################")
 
-    match option:
-        case 1: 
-            shop(current_account)
-        case 2:
-            current_account.get_price_line()
-        case 3:
-            edit_cart(current_account)
-        case 4:
-            check_out(current_account)
-        case 5:
-            get_previous_user_orders(current_account)
-        case 6:
-            edit_users()
-        case 7: 
-            users_orders()
-        case 8:
-            return 
+        match option:
+            case 1: 
+                shop(current_account)
+            case 2:
+                current_account.get_price_line()
+            case 3:
+                edit_cart(current_account)
+            case 4:
+                check_out(current_account)
+            case 5:
+                get_previous_user_orders(current_account)
+            case 6:
+                edit_users()
+            case 7: 
+                users_orders()
+            case 8:
+                return 
 
 def shop(account:Account):
     products = show_products()

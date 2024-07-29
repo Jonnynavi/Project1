@@ -8,7 +8,7 @@ def login():
     password = input("Password: ")
     account = check_credentials(username, password)
     if account == None:
-        print("please try again your email or password was incorrect")
+        print("please try again your username or password was incorrect")
     else:
         return account
     
@@ -90,19 +90,15 @@ def users_orders():
         elif find_user_by_id(int(id)) == None:
             print("That id currently does not exist, try again.")
             continue
-        account = Account(None, None,None,None,None, id)
         while True:
+            account = Account(None, None,None,None,None, int(id))
             get_previous_user_orders(account)
-            account.get_order_history()
-            order_id = input("Please enter the Order ID for the order you wish to delete or enter 0 to quit\n")
+            order_id = input("Please enter the ID for the order you wish to delete or enter 0 to quit\n")
             if order_id == "0":
                 return
-            elif account.find_order(int(id)) == None:
-                print("Order id does not exist, please try again")
-                continue
             delete_past_order_by_id(order_id)
+            
         
-
 def edit_users():
     while True:
         list_users()
@@ -112,23 +108,35 @@ def edit_users():
         elif find_user_by_id(id) == None:
             print("That id currently does not exist, try again.")
             continue
-        choice = input("Choose what you would like to do \n1.change usernamen\n2.change password\n3.change email\n4.change name\n5.delete user \n6.abort\n")
-        match choice:
-            case "1":
-                modify_credential_by_id(id, "username", input("new username: "))
-            case "2":
-                modify_credential_by_id(id, "password", input("new password: "))
-            case "3":
-                modify_user_by_id(id, "email", input("email: "))
-            case "4":
-                modify_user_by_id(id, "name", input("first name: ") + " " + input("last name: "))
-            case "5":
-                if input("are you sure? y/n\n") == "y":
-                    del_user_and_credentials_by_id(id)
-                else:
-                    continue
-            case 6:
-                return
 
-    
+        while True:
+            print("###################")
+            print("     Edit Menu     ")
+            print("###################")
+            choice = input("Choose what you would like to do \n1.change username\n2.change password\n3.change email\n4.change name\n5.delete user \n6.abort\n")
+            match choice:
+                case "1":
+                    try:
+                        modify_credential_by_id(id, "username", input("new username: "))
+                    except:
+                        print("!!!Username is already taken, please choose a different one!!!")
+                case "2":
+                    modify_credential_by_id(id, "password", input("new password: "))
+                case "3":
+                    try:
+                        modify_user_by_id(id, "email", input("email: "))
+                    except:
+                        print("!!!Email is already taken, please choose a different one!!!")
+
+                case "4":
+                    modify_user_by_id(id, "name", input("first name: ") + " " + input("last name: "))
+                case "5":
+                    if input("are you sure? y/n\n") == "y":
+                        del_user_and_credentials_by_id(id)
+                        break
+                    else:
+                        continue
+                case "6":
+                    break
+            
 
