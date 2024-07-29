@@ -21,7 +21,7 @@ class Account():
         return self._role
 
     def get_name(self):
-        return self._name
+        return self._name.title()
     
     def get_username(self):
         return self._username
@@ -48,8 +48,11 @@ class Account():
     def increase_qty_cart(self, id, qty):
         selected = [x for x in self._cart if x.id == id]
         for x in range(qty):
-            self._cart.append(selected[0])
-
+            try:
+                self._cart.append(selected[0])
+            except IndexError:
+                print("Please choose from the avaliable ids")
+                return
     def empty_cart(self):
         self._cart = []
 
@@ -90,6 +93,11 @@ class Account():
             print(f"your total price is ${total_price}")
             print("--------------------------------")
         return self._order_history
-        
+    
+    def find_order(self, id):
+        for i in self._order_history:
+            if i.id == id:
+                return i
+        return None
     def set_order_history(self, history):
         self._order_history = history

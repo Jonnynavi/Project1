@@ -1,9 +1,11 @@
 from datetime import date
 import mysql.connector
-import json
+import logging
 from Order import Order
 from Account import Account    
-from Product import Product           
+from Product import Product   
+
+logging.basicConfig(filename="sql.logs", level=logging.DEBUG, format='%(asctime)s :: %(message)s')
 
 cnx = mysql.connector.connect(user="root", password="200188348Jt!",
                               host="127.0.0.1", database = "naviecommerce")
@@ -13,10 +15,10 @@ def insert_user(user: Account):
     new_user = f"INSERT INTO user(email, role, name) VALUES('{user.get_email()}', '{user.get_role()}', '{user.get_name()}');"
     cursor.execute(new_user)
     cnx.commit()
+    logging.info(f"adding new user - id: {cursor._last_insert_id} name: {user.get_name().title()}")
     insert_credentials(user)  
   
 def insert_credentials(user: Account):
-    # print(user.get_id())
     id_sql= f"SELECT id FROM user WHERE email = '{user.get_email()}'; "
     cursor.execute(id_sql)
     id = cursor.fetchone()[0]
@@ -45,6 +47,11 @@ def find_user_by_username(username):
     cursor.execute(sql_user)
     return cursor.fetchone()
 
+def find_user_by_id(id):
+    sql_user = f"SELECT * FROM user WHERE user.id = {id} "
+    cursor.execute(sql_user)
+    return cursor.fetchone()
+
 def check_credentials(username, password):
     sql_account = f"SELECT * FROM user JOIN credentials c ON user.id = c.userID WHERE username = '{username}' AND password = '{str(password)}'"
     cursor.execute(sql_account)
@@ -62,6 +69,7 @@ def insert_into_orders(order: Order):
     order.id = cursor.lastrowid
     insert_into_order_lines(order)
     cnx.commit()
+    logging.debug(f"Inserting a new order - id: {order.id}")
 
 def insert_into_order_lines(order:Order):
     
@@ -93,7 +101,44 @@ def get_previous_user_orders(account: Account):
     account.set_order_history(order_history)
     account.get_order_history()
     
+def get_all_users():
+    sql ="SELECT c.username, c.password, u.email, u.role, u.name, c.userid FROM user u JOIN credentials c ON c.userid = u.ID;"
+    cursor.execute(sql)
+    users = []
+    for x in cursor:
+        users.append(Account(x[0], x[1], x[2], x[3], x[4], x[5]))
+    return users
+
+def modify_user_by_id(id, atr, change):
+    sql = f"UPDATE user SET {atr} = %s WHERE id = %s"
+    cursor.execute(sql, (change, id))
+    cnx.commit()
+    logging.debug(f"modifying the user - id: {id} - {atr} to {change}")
     
+def modify_credential_by_id(id, atr, change):
+    sql = f"UPDATE credentials SET {atr} = %s WHERE userid = %s"
+    cursor.execute(sql, (change, id))
+    cnx.commit()
+    logging.debug(f"modifying the user - id: {id} - {atr} to {change}")
+
+def del_user_and_credentials_by_id(id):
+    sql = """DELETE c, u FROM credentials c 
+            JOIN user u on c.userid = u.id 
+            WHERE c.userID = %s;"""
+    sql_ord = """DELETE o, ol FROM orders o 
+                JOIN order_lines ol ON o.id = ol.order_id
+                WHERE o.user_id = %s"""
+    cursor.execute(sql_ord,[id])
+    cursor.execute(sql,[id])
+    cnx.commit()
+    logging.debug(f"deleted user_id: {id} and all their orders")
+
+def delete_past_order_by_id(id):
+    sql = "DELETE o, ol FROM orders o JOIN order_lines ol ON o.id = ol.order_id WHERE o.id = %s;"
+    cursor.execute(sql, [id])
+    cnx.commit()
+    logging.debug(f"Deleted Order #{id}")
+
     # print(products)
 # # print(finduser_by_username(test_account))
 

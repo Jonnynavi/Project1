@@ -7,24 +7,12 @@ def main():
         current_Account = login_screen()
         while True:
             print("Please choose from these options")
-            option = int(input("1. shop\n2. check cart\n3. edit cart\n4. checkout\n5. check your past orders\n6. logout\n0. quit\n"))
-            print("#############################")
+            if current_Account.get_role() == "admin":
+                admin_menu(current_Account)
+            else:
+                customer_menu(current_Account)
+                break
 
-            match option:
-                case 1: 
-                    shop(current_Account)
-                case 2:
-                    current_Account.get_price_line()
-                case 3:
-                    edit_cart(current_Account)
-                case 4:
-                    check_out(current_Account)
-                case 5:
-                    get_previous_user_orders(current_Account)
-                case 6:
-                    break 
-                case _:
-                    return
 
 def login_screen():
     current_account = None
@@ -39,6 +27,47 @@ def login_screen():
             continue
         
         return current_account
+    
+def customer_menu(current_account: Account):
+    while True:
+        option = int(input("1. shop\n2. check cart\n3. edit cart\n4. checkout\n5. check your past orders\n6. logout\n"))
+        print("#############################")
+
+        match option:
+            case 1: 
+                shop(current_account)
+            case 2:
+                current_account.get_price_line()
+            case 3:
+                edit_cart(current_account)
+            case 4:
+                check_out(current_account)
+            case 5:
+                get_previous_user_orders(current_account)
+            case 6:
+                return 
+
+def admin_menu(current_account: Account):
+    option = int(input("1. shop\n2. check cart\n3. edit cart\n4. checkout\n5. check your past orders\n6. edit users\n7. view and del users orders\n8. logout\n"))
+    print("#############################")
+
+    match option:
+        case 1: 
+            shop(current_account)
+        case 2:
+            current_account.get_price_line()
+        case 3:
+            edit_cart(current_account)
+        case 4:
+            check_out(current_account)
+        case 5:
+            get_previous_user_orders(current_account)
+        case 6:
+            edit_users()
+        case 7: 
+            users_orders()
+        case 8:
+            return 
 
 def shop(account:Account):
     products = show_products()
@@ -65,16 +94,16 @@ def shop(account:Account):
 def edit_cart(account: Account):
     while True:
         account.get_price_line()
-        selection = input("Please select from the following\n1.increase quantity of an item\n2.reduce quantity of an item\n0. to quit")
+        selection = input("Please select from the following\n1.increase quantity of an item\n2.reduce quantity of an item\n0.to quit\n")
 
         match selection:
             case "1":
-                id = input("Please Enter the item id")
-                qty = input("Please Enter how many more you want to add to the qty")
+                id = input("Please Enter the item id\n")
+                qty = input("Please Enter how many more you want to add to the qty\n")
                 account.increase_qty_cart(int(id), int(qty))
             case "2":
-                id = input("Please Enter the item id")
-                qty = input("Please Enter the amount you want to reduce the item by")
+                id = input("Please Enter the item id\n")
+                qty = input("Please Enter the amount you want to reduce the item by\n")
                 account.reduce_qty_cart(int(id), int(qty))
             case _ :
                 break
