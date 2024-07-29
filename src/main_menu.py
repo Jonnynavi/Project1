@@ -138,5 +138,46 @@ def edit_users():
                         continue
                 case "6":
                     break
-            
 
+def edit_products():
+        while True:
+            print("###################")
+            print("    Prodcut Menu   ")
+            print("###################")
+            choice = input("1.add product\n2.delete product\n3.list products\n4.quit\n")
+            match choice:
+                case "1":
+                    add_product()
+                case "2":
+                    delete_product()
+                case "3":
+                    show_products()
+                case "4":
+                    break          
+
+def add_product():
+    title = input("Enter a name of item\n")
+    image = input("Enter Image\n")
+    description = input("Enter item description\n")
+    while True:
+        try:
+            price = int(input("Enter item price\n"))
+        except:
+            print("incorrect input, try again")
+            continue
+        break
+    add_to_products(Product(None, title, image, description, price))
+
+def delete_product():
+    show_products()
+    while True:
+        try:
+            id = input("Enter Product ID\n")
+        except:
+            print("Incorrect input, try again")
+            continue
+        break
+    delete_product_by_id(id)
+    print("_______________________________")
+    print(f"Product {id} has been deleted")
+    print("_______________________________")

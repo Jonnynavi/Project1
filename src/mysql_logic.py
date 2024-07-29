@@ -139,8 +139,21 @@ def delete_past_order_by_id(id):
     cnx.commit()
     logging.debug(f"Deleted Order #{id}")
 
+def add_to_products(product: Product):
+    sql = "INSERT INTO products(title,image,description,price) VALUES(%s, %s, %s, %s)"
+    cursor.execute(sql, (product.title, product.image, product.description, product.price))
+    cnx.commit()
+    logging.debug(f"Adding {product.title} to products")
+
+def delete_product_by_id(id):
+    sql = "DELETE p FROM products p WHERE p.id = %s"
+    cursor.execute(sql, [id])
+    cnx.commit()
+    logging.debug(f"product #{id} has been deleted")
     # print(products)
 # # print(finduser_by_username(test_account))
+
+# delete_product_by_id(21)
 
 # insert_user(test_account)
 # print(test_account.get_id())

@@ -53,3 +53,18 @@
 2024-07-29 10:23:06,924 :: modifying the user - id: 9 - username to navii
 2024-07-29 10:24:02,511 :: Deleted Order #21
 2024-07-29 10:25:05,364 :: adding new user - id: 13 name: Jona Torres
+2024-07-29 10:27:20,019 :: adding new user - id: 14 name: R R
+2024-07-29 10:28:27,358 :: Inserting a new order - id: 23
+2024-07-29 16:29:03,717 :: Adding Oculus Quest 2 to products
+2024-07-29 16:36:28,899 :: product #21 has been deleted
+2024-07-29 17:47:24,375 :: Adding Oculus VR headset 2 to products
+2024-07-29 17:47:52,420 :: product #22 has been deleted
+2024-07-29 17:57:51,792 :: Inserting a new order - id: 24
+2024-07-29 17:58:20,384 :: modifying the user - id: 4 - username to jonaaaaa25
+2024-07-29 17:59:22,415 :: modifying the user - id: 4 - name to jo to
+2024-07-29 17:59:36,387 :: deleted user_id: 4 and all their orders
+2024-07-29 17:59:54,829 :: Deleted Order #24
+2024-07-29 18:00:46,230 :: Adding Oclus Vr headset to products
+2024-07-29 18:00:59,656 :: product #23 has been deleted
+2024-07-29 18:01:27,294 :: adding new user - id: 15 name: Dodo Dodo
+2024-07-29 18:02:31,227 :: Inserting a new order - id: 25

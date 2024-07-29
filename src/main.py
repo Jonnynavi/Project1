@@ -55,25 +55,27 @@ def admin_menu(current_account: Account):
         print("##################")
         print("    Admin Menu    ")
         print("##################")
-        option = int(input("1. shop\n2. check cart\n3. edit cart\n4. checkout\n5. check your past orders\n6. edit users\n7. view and del users orders\n8. logout\n"))
+        option = input("1. shop\n2. check cart\n3. edit cart\n4. checkout\n5. check your past orders\n6. edit users\n7. view and del users orders\n8. add or delete products\n9. logout\n")
         print("#############################")
 
         match option:
-            case 1: 
+            case "1": 
                 shop(current_account)
-            case 2:
+            case "2":
                 current_account.get_price_line()
-            case 3:
+            case "3":
                 edit_cart(current_account)
-            case 4:
+            case "4":
                 check_out(current_account)
-            case 5:
+            case "5":
                 get_previous_user_orders(current_account)
-            case 6:
+            case "6":
                 edit_users()
-            case 7: 
+            case "7": 
                 users_orders()
-            case 8:
+            case "8":
+                edit_products()
+            case "9":
                 return 
 
 def shop(account:Account):
