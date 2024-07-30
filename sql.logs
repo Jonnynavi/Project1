@@ -68,3 +68,15 @@
 2024-07-29 18:00:59,656 :: product #23 has been deleted
 2024-07-29 18:01:27,294 :: adding new user - id: 15 name: Dodo Dodo
 2024-07-29 18:02:31,227 :: Inserting a new order - id: 25
+2024-07-30 11:32:19,841 :: Inserting a new order - id: 26
+2024-07-30 11:32:56,706 :: modifying the user - id: 13 - username to rev256
+2024-07-30 11:33:43,293 :: Deleted Order #26
+2024-07-30 11:35:03,805 :: Adding Airpods to products
+2024-07-30 11:35:32,185 :: product #24 has been deleted
+2024-07-30 11:36:23,104 :: adding new user - id: 16 name: Jona Torres
+2024-07-30 11:37:05,343 :: Inserting a new order - id: 27
+2024-07-30 15:32:14,851 :: Inserting a new order - id: 28
+2024-07-30 15:32:50,640 :: modifying the user - id: 13 - username to rev123
+2024-07-30 15:32:55,204 :: modifying the user - id: 13 - password to 00000
+2024-07-30 15:33:04,412 :: modifying the user - id: 13 - name to tom boo
+2024-07-30 15:33:26,400 :: deleted user_id: 13 and all their orders

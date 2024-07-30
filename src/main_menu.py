@@ -50,9 +50,10 @@ def create_an_account():
 def show_products():
     print("Current Items")
     products = get_products()
+    print("id | title | description | price")
     for x in products:
-        print(x)
-        print("#############################")
+        print(f"{x.id} | {x.title} | {x.description} | ${x.price}")
+        print("--------------------------------------------------------------------------------------------")
     return products
 
 
